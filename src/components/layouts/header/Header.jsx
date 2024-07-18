@@ -5,7 +5,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { IconLicense } from "@tabler/icons-react";
 import { Link, useLocation } from "react-router-dom";
 import classes from "./DoubleHeader.module.css";
-import { AddNewNoteButton } from "../../ui/buttons/AddNewNoteButton";
+import { AddNewNoteForm } from "../forms/AddNewNoteForm";
 
 const mainLinks = [
   { link: "/", label: "Note List" },
@@ -34,9 +34,11 @@ export function DoubleHeader() {
         style={{ marginLeft: "5%", marginRight: "5%" }}
       >
         <div style={{ display: "flex", width: "70%", alignItems: "center" }}>
-          <div
+          <Link
+          to={'/'}
             style={{
               display: "flex",
+              textDecoration:'none',
               alignItems: "center",
               paddingRight: "25px",
               paddingLeft: "5px",
@@ -54,7 +56,7 @@ export function DoubleHeader() {
             >
               Guhnotes
             </span>
-          </div>
+          </Link>
 
           <div className="header-right">
             <ActionToggle />
@@ -68,7 +70,7 @@ export function DoubleHeader() {
         >
           <Group gap={0} justify="space-between">
             {mainItems}
-            <AddNewNoteButton />
+            <AddNewNoteForm />
           </Group>
         </Box>
         <Burger

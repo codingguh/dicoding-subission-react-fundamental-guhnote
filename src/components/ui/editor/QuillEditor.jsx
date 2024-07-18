@@ -15,15 +15,14 @@ const QuillEditor= () => {
 
   return (
    
-      <Editor
-      
-        ref={editorRef}
-        readOnly={false}
-        defaultValue={{ ops: [{ insert: 'Type your content here .....\n' }] }}
-        onTextChange={handleTextChange}
-        onSelectionChange={handleSelectionChange}
-      />
-   
+    <Editor
+    ref={editorRef}
+    readOnly={false}
+    defaultValue={{ ops: [] }}
+    onTextChange={handleTextChange}
+    onSelectionChange={handleSelectionChange}
+    placeholder="Write something amazing..." // Custom placeholder text
+  />
   );
 };
 

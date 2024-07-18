@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import { RootContainer } from "./RootContainer";
 import NotFoundPage from "../pages/NotFoundPage";
 import ArchivePage from "../pages/ArchivePage";
+import DetailPage from "../pages/DetailPage";
 
 
 export const router = createBrowserRouter([
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
             {
                 path:'archive',
                 element:<ArchivePage/>
+            },
+            {
+                path:'detail/:id',
+                element:<DetailPage/>
             },
             {
                 path: '*',

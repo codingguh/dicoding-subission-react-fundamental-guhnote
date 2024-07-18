@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { createContext, useState, useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { listNote } from '../data/notes';
+// import { notifications } from '@mantine/notifications';
 
 const NotesContext = createContext();
 
@@ -30,6 +31,7 @@ export const NotesProvider = ({ children }) => {
 
   const deleteNote = (id) => {
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
+    
   };
 
   const addNote = (title, body) => {

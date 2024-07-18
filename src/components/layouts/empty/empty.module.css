@@ -1,0 +1,45 @@
+.boxEmpty {
+    padding-bottom: 6em;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%;
+  }
+  
+  .text {
+    font-size: var(--fs-m);
+    text-align: center;
+    color: var(--text-common-color);
+    font-weight: var(--fw-medium);
+  }
+  
+  .linkAdd {
+    font-size: inherit;
+    color: var(--secondary-color);
+    font-weight: var(--fw-bold);
+    text-decoration: none;
+  }
+  
+  /* ================================================ */
+  /* Tablet Responsive */
+  @media only screen and (min-width: 768px) {
+    .boxEmpty {
+      min-height: 70vh;
+      padding-bottom: 2rem;
+    }
+  
+    @media (hover: hover) {
+      /* when supported */
+      .linkAdd:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  /* ================================================ */
+  /* Desktop Responsive */
+  @media only screen and (min-width: 1024px) {
+  }

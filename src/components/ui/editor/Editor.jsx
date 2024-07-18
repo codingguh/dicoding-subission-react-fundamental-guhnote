@@ -1,11 +1,11 @@
-import  { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
+import { forwardRef, useEffect, useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css'; // Import Quill styles
 import './style.css'; // Import your custom CSS
 
 const Editor = forwardRef(
-  ({ readOnly, defaultValue, onTextChange, onSelectionChange }, ref) => {
+  ({ readOnly, defaultValue, onTextChange, onSelectionChange, placeholder }, ref) => {
     const containerRef = useRef(null);
     const defaultValueRef = useRef(defaultValue);
     const onTextChangeRef = useRef(onTextChange);
@@ -29,6 +29,7 @@ const Editor = forwardRef(
 
       const quill = new Quill(editorContainer, {
         theme: 'snow',
+        placeholder: placeholder, // Set the placeholder here
       });
 
       ref.current = quill;
@@ -49,7 +50,7 @@ const Editor = forwardRef(
         ref.current = null;
         container.innerHTML = '';
       };
-    }, [ref]);
+    }, [ref, placeholder]);
 
     return <div ref={containerRef}></div>;
   },
@@ -62,13 +63,7 @@ Editor.propTypes = {
   defaultValue: PropTypes.object,
   onTextChange: PropTypes.func,
   onSelectionChange: PropTypes.func,
-};
-
-Editor.defaultProps = {
-  readOnly: false,
-  defaultValue: null,
-  onTextChange: () => {},
-  onSelectionChange: () => {},
+  placeholder: PropTypes.string, // Add the prop type for placeholder
 };
 
 export default Editor;
