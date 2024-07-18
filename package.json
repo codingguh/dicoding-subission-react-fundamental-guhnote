@@ -1,0 +1,41 @@
+{
+  "name": "dicoding-submission-1-guhnote",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.1.5",
+    "@mantine/core": "^7.11.2",
+    "@mantine/hooks": "^7.11.2",
+    "@mantinex/mantine-logo": "^1.0.1",
+    "@tabler/icons-react": "^3.11.0",
+    "add": "^2.0.6",
+    "clsx": "^2.1.1",
+    "html-react-parser": "^5.1.11",
+    "prop-types": "^15.8.1",
+    "quill": "^2.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.25.1",
+    "yarn": "^1.22.22"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.34.3",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "postcss": "^8.4.39",
+    "postcss-preset-mantine": "^1.16.0",
+    "postcss-simple-vars": "^7.0.1",
+    "vite": "^5.3.4"
+  }
+}
