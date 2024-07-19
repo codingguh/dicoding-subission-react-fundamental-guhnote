@@ -23,6 +23,13 @@ export function AddNewNoteForm() {
     setTitle("");
     setBody("")
     close()
+    return       notifications.show({
+
+      title: 'Success',
+      message: 'Success Add Data',
+      position:'top-left',
+      classNames: classes,
+    });
     // if (editorRef.current) {
     //   editorRef.current.setContents(""); // Reset the editor content
     // }
