@@ -1,11 +1,10 @@
-// import { useState } from "react";
-import { Group, Burger, Box } from "@mantine/core";
+import { Group, Burger, Box , Drawer, Menu} from "@mantine/core";
 import { ActionToggle } from "../../ui/buttons/ActionToggle";
 import { useDisclosure } from "@mantine/hooks";
-import { IconLicense } from "@tabler/icons-react";
 import { Link, useLocation } from "react-router-dom";
 import classes from "./DoubleHeader.module.css";
 import { AddNewNoteForm } from "../forms/AddNewNoteForm";
+import GuhNotes from "../logo/GuhNotes";
 
 const mainLinks = [
   { link: "/", label: "Note List" },
@@ -13,7 +12,7 @@ const mainLinks = [
 ];
 
 export function DoubleHeader() {
-  const [opened, { toggle }] = useDisclosure(false);
+  const [opened, { open,close }] = useDisclosure(false);
   const location = useLocation();
 
   const mainItems = mainLinks.map((item) => (
@@ -22,9 +21,25 @@ export function DoubleHeader() {
       key={item.label}
       className={classes.mainLink}
       data-active={location.pathname === item.link || undefined}
+      style={{textDecoration:'none',}}
     >
       {item.label}
     </Link>
+  ));
+
+  const mainItemsVertical = mainLinks.map((item) => (
+   <Menu.Item  key={item.label} style={{background:'transparent',padding:0,width:'100%',marginBottom:'21px',marginTop:'12px'}}>
+      <Link
+      to={item.link}
+     
+      className={classes.mainLink}
+      data-active={location.pathname === item.link || undefined}
+      style={{textDecoration:'none',}}
+    >
+      {item.label}
+    </Link>
+   </Menu.Item>
+  
   ));
 
   return (
@@ -34,29 +49,7 @@ export function DoubleHeader() {
         style={{ marginLeft: "5%", marginRight: "5%" }}
       >
         <div style={{ display: "flex", width: "70%", alignItems: "center" }}>
-          <Link
-          to={'/'}
-            style={{
-              display: "flex",
-              textDecoration:'none',
-              alignItems: "center",
-              paddingRight: "25px",
-              paddingLeft: "5px",
-            }}
-          >
-            <IconLicense size={45} color="rgb(51, 154, 240)" stroke={2} />
-
-            <span
-              style={{
-                marginLeft: "3px",
-                fontWeight: "bolder",
-                fontSize: 19,
-                color: "rgb(51, 154, 240)",
-              }}
-            >
-              Guhnotes
-            </span>
-          </Link>
+          <GuhNotes/>
 
           <div className="header-right">
             <ActionToggle />
@@ -69,13 +62,24 @@ export function DoubleHeader() {
           style={{ width: "350px" }}
         >
           <Group gap={0} justify="space-between">
-            {mainItems}
+       {mainItems}
             <AddNewNoteForm />
           </Group>
         </Box>
+        <Drawer size="xs" position="right" opened={opened} onClose={close} title={<GuhNotes/>}>
+        
+      <Menu styles={{marginBottom:'33px'}}>
+      {mainItemsVertical}
+      </Menu>
+         
+          <div style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'21px'}}>
+          <AddNewNoteForm />
+          </div>
+       
+      </Drawer>
         <Burger
           opened={opened}
-          onClick={toggle}
+          onClick={open}
           className={classes.burger}
           size="sm"
           hiddenFrom="md"

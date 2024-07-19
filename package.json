@@ -19,6 +19,7 @@
     "@tabler/icons-react": "^3.11.0",
     "add": "^2.0.6",
     "clsx": "^2.1.1",
+    "framer-motion": "^11.3.7",
     "html-react-parser": "^5.1.11",
     "prop-types": "^15.8.1",
     "quill": "^2.0.2",

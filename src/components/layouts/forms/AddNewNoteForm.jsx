@@ -1,23 +1,21 @@
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button, Input,  } from "@mantine/core";
 import { IconPencilCode } from "@tabler/icons-react";
-// import QuillEditor from "../../ui/editor/QuillEditor";
 import { useNotes } from "../../../context/NotesProvider";
 import { useState } from "react";
 import "../../ui/editor/style.css";
 import classes from '../../ui/editor/Demo.module.css';
 import { notifications } from "@mantine/notifications";
 import "react-quill/dist/quill.snow.css";
-// import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
-import { modals } from '@mantine/modals';
-// import 'react-quill/dist/quill.snow.css';
+import { useNavigate } from "react-router-dom";
 export function AddNewNoteForm() {
   const [opened, { open, close }] = useDisclosure(false);
   const { addNote } = useNotes();
   // const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const navigate = useNavigate();
 
   const addAndResetNote = () => {
     // const body = editorRef.current?.root.innerHTML; // Get the HTML content of the editor
@@ -44,10 +42,10 @@ export function AddNewNoteForm() {
       });
       // return showToast('error', 'Title and body cannot be empty')
     }
-    console.log("sdasdas");
+    navigate('/')
 
     addAndResetNote();
-  
+    close()
   };
 
   // console.log(title)
