@@ -14,8 +14,8 @@ const Hero = ({title,amount}) => {
 }
 
 Hero.propTypes = {
-  title: PropTypes.string.required,
-  amount: PropTypes.number.required,
+  title: PropTypes.string,
+  amount: PropTypes.number,
 };
 
 export default Hero

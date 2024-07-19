@@ -13,6 +13,7 @@ import { useNotes } from "../../../context/NotesProvider";
 import { notifications } from "@mantine/notifications";
 import { showDate } from "../../../utils/timeFormat";
 import styles from './card.module.css';
+import parse from 'html-react-parser';
   
   export function TaskCard({ id, title, body, createdAt, archived }) {
     const { deleteNote,archiveNote } = useNotes()
@@ -31,11 +32,9 @@ import styles from './card.module.css';
       onConfirm: ()=>{
         deleteNote(id);
         notifications.show({
-        title: 'Notification with custom styles',
-        message: 'It is default blue',
+        title: 'Success Delete data',
+        message: 'this data has been removed',
         position:'top-left'
-        // posi
-        // classNames: classes,
       })
     },
       // onDelete={() => deleteNote(id)}
@@ -52,7 +51,7 @@ import styles from './card.module.css';
       })
     }
     return (
-      <Card withBorder padding="lg" radius="md">
+      <Card withBorder padding="lg" radius="md" style={{marginBottom:'9px'}}>
         <Text fz="lg" fw={550} mt="md">
           <Link to={`/detail/${id}`} >
           {title}
@@ -61,7 +60,7 @@ import styles from './card.module.css';
   
        
         <Text fz="sm" c="dimmed" mt={5} className={styles.cardEllipsis}>
-         {body}
+         {parse(body)}
         </Text>
         
         <Text  size="xs" mt="md" style={{color:'grey'}}>
