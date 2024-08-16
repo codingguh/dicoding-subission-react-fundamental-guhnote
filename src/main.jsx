@@ -14,12 +14,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <MantineProvider theme={theme}>
     <Notifications position="top-right" zIndex={1000} />
-  
-
       <ModalsProvider>
-        {/* <Notifications> */}
         <App />
-        {/* </Notifications> */}
       </ModalsProvider>
     </MantineProvider>
   </React.StrictMode>

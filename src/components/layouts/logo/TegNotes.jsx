@@ -1,7 +1,7 @@
 import { IconLicense } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 
-const GuhNotes = () => {
+const TegNotes = () => {
   return (
     <Link
       to={"/"}
@@ -23,10 +23,10 @@ const GuhNotes = () => {
           color: "rgb(51, 154, 240)",
         }}
       >
-        Guhnotes
+        TegNote
       </span>
     </Link>
   );
 };
 
-export default GuhNotes;
+export default TegNotes;

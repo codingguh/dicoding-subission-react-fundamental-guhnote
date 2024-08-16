@@ -59,7 +59,7 @@ function CardDetailnote({ title, body }) {
               c="teal"
               style={{ textDecoration: "none", fontWeight: "bolder" }}
             >
-              Book classic tour now
+              Back to our note
             </Text>
           </Link>
         </Card>

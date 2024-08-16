@@ -4,7 +4,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { Link, useLocation } from "react-router-dom";
 import classes from "./DoubleHeader.module.css";
 import { AddNewNoteForm } from "../forms/AddNewNoteForm";
-import GuhNotes from "../logo/GuhNotes";
+import TegNotes from "../logo/TegNotes";
 
 const mainLinks = [
   { link: "/", label: "Note List" },
@@ -49,7 +49,7 @@ export function DoubleHeader() {
         style={{ marginLeft: "5%", marginRight: "5%" }}
       >
         <div style={{ display: "flex", width: "70%", alignItems: "center" }}>
-          <GuhNotes/>
+          <TegNotes/>
 
           <div className="header-right">
             <ActionToggle />
@@ -66,7 +66,7 @@ export function DoubleHeader() {
             <AddNewNoteForm />
           </Group>
         </Box>
-        <Drawer size="xs" position="right" opened={opened} onClose={close} title={<GuhNotes/>}>
+        <Drawer size="xs" position="right" opened={opened} onClose={close} title={<TegNotes/>}>
         
       <Menu styles={{marginBottom:'33px'}}>
       {mainItemsVertical}
