@@ -1,10 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-refresh/only-export-components */
 
 import { useSearchParams } from 'react-router-dom';
 import { createContext, useState, useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { listNote } from '../data/notes';
-// import { notifications } from '@mantine/notifications';
 
 const NotesContext = createContext();
 
