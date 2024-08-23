@@ -1,4 +1,4 @@
-import { Avatar, Group, Menu, rem, UnstyledButton,Text } from '@mantine/core'
+import { Avatar, Group, Menu, rem, UnstyledButton,Text,useMantineColorScheme, useComputedColorScheme, } from '@mantine/core'
 import { IconChevronDown, IconLanguage, IconSwitchHorizontal } from '@tabler/icons-react'
 import clsx from 'clsx';
 import PropTypes from 'prop-types'; // Import PropTypes
@@ -6,10 +6,13 @@ import ButtonLogout from '../../ui/buttons/ButtonLogout';
 import classes from './AuthedMenu.module.css';
 import { useContext } from "react";
 import AuthContext from "../../../context/AuthContext";
+import { ActionToggle } from '../../ui/buttons/ActionToggle';
 
 
 const Authedmenu = ({userMenuOpened}) => {
     const { auth } = useContext(AuthContext);
+    const { setColorScheme } = useMantineColorScheme();
+    const computedColorScheme = useComputedColorScheme('light', { getInitialValueInEffect: true });
     const user = {
         name: auth.name,
         email: auth.email,
@@ -56,6 +59,17 @@ const Authedmenu = ({userMenuOpened}) => {
         }
       >
         Archive List
+      </Menu.Item>
+      <Menu.Item
+        onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
+        leftSection={
+          <ActionToggle
+            style={{ width: rem(21), height: rem(21) }}
+            stroke={1.5}
+          />
+        }
+      >
+        Tema
       </Menu.Item>
       <Menu.Item
         leftSection={

@@ -9,7 +9,7 @@ export function ActionToggle() {
       {/* <ActionIcon  variant="default" size="xl" aria-label="Toggle color scheme">
         
       </ActionIcon> */}
-      <div onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}>
+      <div style={{cursor:'pointer'}} onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}>
       <IconSun className={cx(classes.icon, classes.light)} stroke={1.5}/>
       <IconMoon className={cx(classes.icon, classes.dark)} stroke={1.5}/>
       </div>

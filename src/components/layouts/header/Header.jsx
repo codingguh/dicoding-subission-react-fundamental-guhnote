@@ -8,6 +8,7 @@ import TegNotes from "../logo/TegNotes";
 import { useState,useContext } from "react";
 import AuthContext from '../../../context/AuthContext'
 import Authedmenu from "../menu/Authedmenu";
+import { ActionToggle } from "../../ui/buttons/ActionToggle";
 
 export function DoubleHeader() {
   const { auth } = useContext(AuthContext)
@@ -38,7 +39,7 @@ export function DoubleHeader() {
         >
         
         {
-          auth?(<Authedmenu userMenuOpened={userMenuOpened}/>):(<div>login</div>)
+          auth?(<Authedmenu userMenuOpened={userMenuOpened}/>):(<div><ActionToggle /></div>)
         }
          
         </Menu>
