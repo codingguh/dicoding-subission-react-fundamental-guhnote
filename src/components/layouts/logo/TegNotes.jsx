@@ -1,4 +1,4 @@
-import { IconLicense } from "@tabler/icons-react";
+import {  IconLicense } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 
 const TegNotes = () => {
@@ -13,6 +13,7 @@ const TegNotes = () => {
         paddingLeft: "5px",
       }}
     >
+
       <IconLicense size={45} color="rgb(51, 154, 240)" stroke={2} />
 
       <span

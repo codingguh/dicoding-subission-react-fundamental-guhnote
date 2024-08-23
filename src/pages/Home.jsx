@@ -3,11 +3,13 @@ import { TaskCard } from "../components/ui/cards/Card";
 import { Grid } from "@mantine/core";
 import { useNotes } from "../context/NotesProvider";
 import EmptyNotes from "../components/layouts/empty/EmptyNotes";
+import { AddNewNoteForm } from "../components/layouts/forms/AddNewNoteForm";
+import { CircularButtonNoteForm } from "../components/ui/buttons/CircuclarButton";
 const Home = () => {
   const { unarchivedNotes } = useNotes();
   return (
     <div style={{ marginLeft: "5%", marginRight: "5%" }}>
-      <Hero  title='Note List' amount={unarchivedNotes.length}/>
+      <Hero title="Note List" amount={unarchivedNotes.length} />
       <Grid gutter={{ base: 5, xs: "md", md: "xl", xl: 50 }}>
         {unarchivedNotes.length > 0 ? (
           unarchivedNotes.map((note) => (
@@ -22,6 +24,8 @@ const Home = () => {
           <EmptyNotes description="List of unarchived notes is empty" />
         )}
       </Grid>
+      <CircularButtonNoteForm/>
+      
     </div>
   );
 };

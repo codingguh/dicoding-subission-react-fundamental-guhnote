@@ -1,89 +1,65 @@
-import { Group, Burger, Box , Drawer, Menu} from "@mantine/core";
-import { ActionToggle } from "../../ui/buttons/ActionToggle";
+import {
+  Drawer,
+  Menu,
+} from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Link, useLocation } from "react-router-dom";
 import classes from "./DoubleHeader.module.css";
-import { AddNewNoteForm } from "../forms/AddNewNoteForm";
 import TegNotes from "../logo/TegNotes";
-
-const mainLinks = [
-  { link: "/", label: "Note List" },
-  { link: "/archive", label: "Archive List" },
-];
+import { useState,useContext } from "react";
+import AuthContext from '../../../context/AuthContext'
+import Authedmenu from "../menu/Authedmenu";
 
 export function DoubleHeader() {
-  const [opened, { open,close }] = useDisclosure(false);
-  const location = useLocation();
+  const { auth } = useContext(AuthContext)
+  const [opened, { close }] = useDisclosure(false);
 
-  const mainItems = mainLinks.map((item) => (
-    <Link
-      to={item.link}
-      key={item.label}
-      className={classes.mainLink}
-      data-active={location.pathname === item.link || undefined}
-      style={{textDecoration:'none',}}
-    >
-      {item.label}
-    </Link>
-  ));
+  const [userMenuOpened, setUserMenuOpened] = useState(false);
 
-  const mainItemsVertical = mainLinks.map((item) => (
-   <Menu.Item  key={item.label} style={{background:'transparent',padding:0,width:'100%',marginBottom:'21px',marginTop:'12px'}}>
-      <Link
-      to={item.link}
-     
-      className={classes.mainLink}
-      data-active={location.pathname === item.link || undefined}
-      style={{textDecoration:'none',}}
-    >
-      {item.label}
-    </Link>
-   </Menu.Item>
-  
-  ));
-
+ 
   return (
     <header className={classes.header}>
       <div
         className={classes.inner}
         style={{ marginLeft: "5%", marginRight: "5%" }}
       >
-        <div style={{ display: "flex", width: "70%", alignItems: "center" }}>
-          <TegNotes/>
-
-          <div className="header-right">
-            <ActionToggle />
-          </div>
+        <div style={{ display: "flex", width: "72%", alignItems: "center" }}>
+          <TegNotes />
         </div>
 
-        <Box
-          className={classes.links}
-          visibleFrom="md"
-          style={{ width: "350px" }}
+        {/* <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" /> */}
+
+        <Menu
+          width={260}
+          position="bottom-end"
+          transitionProps={{ transition: "pop-top-right" }}
+          onClose={() => setUserMenuOpened(false)}
+          onOpen={() => setUserMenuOpened(true)}
+          withinPortal
         >
-          <Group gap={0} justify="space-between">
-       {mainItems}
-            <AddNewNoteForm />
-          </Group>
-        </Box>
-        <Drawer size="xs" position="right" opened={opened} onClose={close} title={<TegNotes/>}>
         
-      <Menu styles={{marginBottom:'33px'}}>
-      {mainItemsVertical}
-      </Menu>
+        {
+          auth?(<Authedmenu userMenuOpened={userMenuOpened}/>):(<div>login</div>)
+        }
          
-          <div style={{display:'flex',justifyContent:'center',width:'100%',marginTop:'21px'}}>
-          <AddNewNoteForm />
-          </div>
-       
-      </Drawer>
-        <Burger
+        </Menu>
+        <Drawer
+          size="xs"
+          position="right"
+          opened={opened}
+          onClose={close}
+          title={<TegNotes />}
+        >
+          {/* <Menu styles={{marginBottom:'33px'}}>
+      {mainItemsVertical}
+      </Menu> */}
+        </Drawer>
+        {/* <Burger
           opened={opened}
           onClick={open}
           className={classes.burger}
           size="sm"
           hiddenFrom="md"
-        />
+        /> */}
       </div>
     </header>
   );
