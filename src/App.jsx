@@ -1,19 +1,40 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import '@mantine/core/styles.css';
-import '@mantine/notifications/styles.css';
-import Routes from './routes';
-import AuthContext from './context/AuthContext';
-import { useEffect, useMemo, useState } from 'react';
-import { getUserLogged } from './utils/network-data';
+import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
+import Routes from "./routes";
+import AuthContext from "./context/AuthContext";
+import { useEffect, useMemo, useState } from "react";
+import { getUserLogged } from "./utils/network-data";
+import LocaleContext from "./context/LocaleContext";
 
 function App() {
-  const [auth, setAuth] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const authContextValue = useMemo(() => ({
-    auth,
-    setAuth
-  }), [auth])
+  const [auth, setAuth] = useState(null);
+  const [locale, setLocale] = useState('id')
+  const [loading, setLoading] = useState(true);
+  const authContextValue = useMemo(
+    () => ({
+      auth,
+      setAuth,
+    }),
+    [auth]
+  );
+
+  const toggleLocale = () => {
+    const newLocale = locale === "id" ? "en" : "id";
+    localStorage.setItem("locale", newLocale);
+    setLocale(newLocale);
+  };
+
+
+  const localeContextValue = useMemo(
+    () => ({
+      locale,
+      toggleLocale,
+    }),
+    [locale]
+  );
+
 
   useEffect(() => {
     /**
@@ -22,21 +43,21 @@ function App() {
     getUserLogged()
       .then((res) => {
         if (!res.error) {
-          setAuth(res.data)
+          setAuth(res.data);
         } else {
-          setAuth(null)
+          setAuth(null);
         }
-        setLoading(false)
+        setLoading(false);
       })
       .catch(() => {
-        alert('Error')
-      })
+        alert("Error");
+      });
 
     /**
      * Inisialisasi Locale
      */
-    if (localStorage.locale && ['id', 'en'].includes(localStorage.locale)) {
-      setLocale(localStorage.locale)
+    if (localStorage.locale && ["id", "en"].includes(localStorage.locale)) {
+      setLocale(localStorage.locale);
     }
 
     /**
@@ -49,23 +70,25 @@ function App() {
     //   localStorage.setItem('theme', 'dark')
     //   changeTheme('dark')
     // }
-  }, [])
+  }, []);
 
-  return ( <AuthContext.Provider value={authContextValue}>
-    <div className="app-container">
-      {/* <HeaderComponent /> */}
-      <main>
-        {
-          loading ? (
+  return (
+    <LocaleContext.Provider value={localeContextValue}>
+      <AuthContext.Provider value={authContextValue}>
+      <div className="app-container">
+        {/* <HeaderComponent /> */}
+        <main>
+          {loading ? (
             // <LoadingIndicator />
             <div>ssdfsd</div>
           ) : (
             <Routes />
-          )
-        }
-      </main>
-    </div>
-  </AuthContext.Provider>)
+          )}
+        </main>
+      </div>
+    </AuthContext.Provider>
+    </LocaleContext.Provider>
+  );
 }
 
-export default App
+export default App;

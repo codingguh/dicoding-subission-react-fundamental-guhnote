@@ -1,15 +1,18 @@
 import { Link } from "react-router-dom";
 import NotFound from "../assets/404.png";
 import styles from "./NotFound.module.css";
+import useLanguage from "../hooks/useLanguage";
+
 export default function NotFoundPage() {
+  const text = useLanguage('app')
   return (
     <main className={styles.main}>
       <img className={styles.boxImage} width="500px" src={NotFound} />
-      <h1 className={styles.title}>Oops, an error occurred!</h1>
+      <h1 className={styles.title}></h1>
       <p className={styles.paragraph}>
-        The page you are looking for was not found. Please return to {' '}
+        {text.messagePageNotFound} {' '}
         <Link className={styles.link} to="/">
-          homepage
+          {text.homepage}
         </Link>
         .
       </p>

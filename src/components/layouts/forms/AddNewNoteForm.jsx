@@ -66,7 +66,7 @@ export function AddNewNoteForm() {
         title={
           <div style={{ fontWeight: "bold" }}>
             <IconPencilCode style={{ marginRight: "6px" }} />
-            <span style={{ fontSize: "21px" }}>New Note</span>
+            <span style={{ fontSize: "21px" }}>Add New Note</span>
           </div>
         }
         centered
@@ -97,7 +97,7 @@ export function AddNewNoteForm() {
       </Modal>
 
       <Button variant="outline" color="cyan" onClick={open}>
-        <IconPencilCode style={{ marginRight: "3px" }} /> New Note
+        <IconPencilCode style={{ marginRight: "3px" }} />New Note
       </Button>
     </>
   );

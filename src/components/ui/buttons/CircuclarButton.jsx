@@ -67,7 +67,7 @@ export function CircularButtonNoteForm() {
         title={
           <div style={{ fontWeight: "bold" }}>
             <IconPencilCode style={{ marginRight: "6px" }} />
-            <span style={{ fontSize: "21px" }}>New Note</span>
+            <span style={{ fontSize: "21px" }}>Add New Note</span>
           </div>
         }
         centered

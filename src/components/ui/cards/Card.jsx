@@ -9,17 +9,19 @@ import { showDate } from "../../../utils/timeFormat";
 import styles from "./card.module.css";
 import parse from "html-react-parser";
 import UpdateNoteForm from "../../layouts/forms/UpdateNoteForm";
+import useLanguage from "../../../hooks/useLanguage";
 
 export function TaskCard({ id, title, body, createdAt, archived }) {
+  const text = useLanguage('app')
   const { deleteNote, archiveNote } = useNotes();
   const openModal = () =>
     modals.openConfirmModal({
-      title: "Delete Notes",
+      title: `${text.titleDeleteNote}`,
       centered: true,
       children: (
-        <Text size="sm">Are you sure?, Do you want to delete this note.</Text>
+        <Text size="sm">{text.messageDelete}</Text>
       ),
-      labels: { confirm: "Delete account", cancel: "No don't delete it" },
+      labels: { confirm: `${text.delete}`, cancel: text.noDelete },
       confirmProps: { color: "red" },
 
       onCancel: () => console.log("Cancel"),

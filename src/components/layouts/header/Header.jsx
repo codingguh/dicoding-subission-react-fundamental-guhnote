@@ -1,22 +1,20 @@
-import {
-  Drawer,
-  Menu,
-} from "@mantine/core";
+import { Drawer, Menu } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./DoubleHeader.module.css";
 import TegNotes from "../logo/TegNotes";
-import { useState,useContext } from "react";
-import AuthContext from '../../../context/AuthContext'
+import { useState, useContext } from "react";
+import AuthContext from "../../../context/AuthContext";
 import Authedmenu from "../menu/Authedmenu";
 import { ActionToggle } from "../../ui/buttons/ActionToggle";
+import { LanguagePicker } from "../../ui/picker/LanguagePicker";
+import LanguageToggle from "../../ui/buttons/LanguageToggle";
 
 export function DoubleHeader() {
-  const { auth } = useContext(AuthContext)
+  const { auth } = useContext(AuthContext);
   const [opened, { close }] = useDisclosure(false);
 
   const [userMenuOpened, setUserMenuOpened] = useState(false);
 
- 
   return (
     <header className={classes.header}>
       <div
@@ -37,11 +35,14 @@ export function DoubleHeader() {
           onOpen={() => setUserMenuOpened(true)}
           withinPortal
         >
-        
-        {
-          auth?(<Authedmenu userMenuOpened={userMenuOpened}/>):(<div><ActionToggle /></div>)
-        }
-         
+          {auth ? (
+            <Authedmenu userMenuOpened={userMenuOpened} />
+          ) : (
+            <div style={{ display: "flex", gap: "9px" }}>
+              <ActionToggle />
+              <LanguageToggle/>
+            </div>
+          )}
         </Menu>
         <Drawer
           size="xs"

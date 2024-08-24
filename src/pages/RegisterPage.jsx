@@ -14,8 +14,9 @@ import {
   import classes from "./AuthenticationTitle.module.css";
   import AuthContext from "../context/AuthContext";
   import useInput from "../hooks/useInput";
-  import { getUserLogged, login, putAccessToken, register } from "../utils/network-data";
+  import { register } from "../utils/network-data";
   import { useContext } from "react";
+import useLanguage from "../hooks/useLanguage";
   
   function LoginPage() {
     const { setAuth } = useContext(AuthContext);
@@ -24,8 +25,7 @@ import {
     const [password, onPasswordChange] = useInput("");
     const [confirmPassword, onConfirmPasswordChange] = useInput("");
     const navigate = useNavigate();
-    //   const textApp = useLanguage("app");
-    //   const textLogin = useLanguage("login");
+    const text = useLanguage('register')
   
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -52,15 +52,15 @@ import {
     return (
       <Container size={420} my={40}>
         <Title ta="center" className={classes.title}>
-          Welcome back!
+          {text.header}
         </Title>
         <Text c="dimmed" size="sm" ta="center" mt={5}>
-          have an account?{" "}
+        {text.footer}{" "}{" "}
           <Anchor size="sm" component="button" className="text-primary">
             <Link to="/login">
               {" "}
               <span style={{ fontWeight: "bold", color: "rgb(51, 154, 240)" }}>
-                Login Here
+                {text.footerLoginLink}
               </span>
             </Link>
           </Anchor>
@@ -99,12 +99,7 @@ import {
               required
               mt="md"
             />
-            <Group justify="space-between" mt="lg">
-              <Checkbox label="Remember me" />
-              <Anchor component="button" size="sm">
-                Forgot password?
-              </Anchor>
-            </Group>
+           
             <Button
               onClick={handleSubmit}
               fullWidth

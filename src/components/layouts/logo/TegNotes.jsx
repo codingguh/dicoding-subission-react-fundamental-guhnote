@@ -1,7 +1,8 @@
 import {  IconLicense } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
-
+import useLanguage from "../../../hooks/useLanguage";
 const TegNotes = () => {
+  const text = useLanguage('app')
   return (
     <Link
       to={"/"}
@@ -24,7 +25,7 @@ const TegNotes = () => {
           color: "rgb(51, 154, 240)",
         }}
       >
-        TegNote
+        {text.title}
       </span>
     </Link>
   );
