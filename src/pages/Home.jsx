@@ -71,7 +71,7 @@ const Home = () => {
     <div style={{ marginLeft: "5%", marginRight: "5%" }}>
        
        <Group style={{padding:'20px 00px 20px 0px'}} justify="space-between" >
-      <div></div>
+      <div><h2>Aktif ()</h2></div>
       <Group>
       <IconSearch stroke={2} />
       <TextInput

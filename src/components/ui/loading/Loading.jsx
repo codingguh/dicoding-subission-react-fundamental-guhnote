@@ -1,11 +1,9 @@
+import { Loader } from "@mantine/core";
 
 const Loading = () => {
-  return (
-    <div>
-    loading
-      
-    </div>
-  )
+  return <Loader
+   color="blue" />;
+
 }
 
 export default Loading

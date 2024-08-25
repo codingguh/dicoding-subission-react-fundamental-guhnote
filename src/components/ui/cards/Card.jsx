@@ -1,6 +1,6 @@
 import { Card, Text, Group, ActionIcon, Button } from "@mantine/core";
 import { IconCalendar, IconArchive, IconTrash } from "@tabler/icons-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 import { modals } from "@mantine/modals";
 import { notifications } from "@mantine/notifications";
@@ -9,7 +9,7 @@ import styles from "./card.module.css";
 import parse from "html-react-parser";
 import UpdateNoteForm from "../../layouts/forms/UpdateNoteForm";
 import useLanguage from "../../../hooks/useLanguage";
-import { deleteNote,archiveNote} from "../../../utils/network-data";
+import { deleteNote,archiveNote, unarchiveNote} from "../../../utils/network-data";
 export function TaskCard({ id, title, body, createdAt, archived,onNoteChange }) {
   const text = useLanguage('app');
   const navigate = useNavigate()
@@ -47,6 +47,18 @@ export function TaskCard({ id, title, body, createdAt, archived,onNoteChange }) 
     });
     onNoteChange(id); 
   };
+  const activateNote = (id) => {
+    unarchiveNote(id);
+    notifications.show({
+      title: "Success Unarchive note",
+      message: "You are successfull un archive  this data",
+      position: "top-left",
+    });
+    onNoteChange(id); 
+  };
+  const location = useLocation();
+
+  const currentPath = location.pathname;
   return (
     <Card withBorder padding="lg" radius="md" style={{ marginBottom: "9px" }}>
       <Text fz="lg" fw={550} mt="md">
@@ -72,10 +84,10 @@ export function TaskCard({ id, title, body, createdAt, archived,onNoteChange }) 
             variant="light"
             size="sm"
             radius="md"
-            onClick={() => archivingNote(id)}
+            onClick={() =>currentPath==="/archives"?activateNote(id): archivingNote(id)}
           >
             <IconArchive size="1.1rem" style={{ marginRight: "3" }} />
-            Archive
+             {currentPath==="/archives"?"Activate":"Archivate"}
           </Button>
         </Group>
         <ActionIcon
