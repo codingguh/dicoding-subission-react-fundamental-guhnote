@@ -79,7 +79,7 @@ export function TaskCard({ id, title, body, createdAt, archived,onNoteChange }) 
 
       <Group justify="space-between" mt="md">
         <Group gap="xs">
-          <UpdateNoteForm noteId={id} />
+          <UpdateNoteForm title={title} body={body} noteId={id} />
           <Button
             variant="light"
             size="sm"

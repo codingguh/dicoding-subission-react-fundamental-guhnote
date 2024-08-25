@@ -4,22 +4,24 @@ import { IconPencil, IconPencilMinus } from "@tabler/icons-react";
 import PropTypes from 'prop-types'
 import { useNotes } from "../../../context/NotesProvider";
 import ReactQuill from "react-quill";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { notifications } from "@mantine/notifications";
 import classes from '../../ui/editor/Demo.module.css';
 import "react-quill/dist/quill.snow.css";
+import { getNote } from "../../../utils/network-data";
 
 
-const UpdateNoteForm = ({ noteId }) => {
+const UpdateNoteForm = ({ noteId,title,body }) => {
+  const [note, setNote] = useState(null);
+  const [loading, setLoading] = useState(true);
     const [opened, { open, close }] = useDisclosure(false);
   const { editNote,getNoteById } = useNotes();
 
-  const initialNote = getNoteById(noteId)
+  // const initialNote = getNoteById(noteId)
 
-  const [title, setTitle] = useState(initialNote?.title || '');
-  const [body, setBody] = useState(initialNote?.body || '')
+  
 
-
+  
 
   const UpdateAndResetNote = () => {
     editNote(noteId, title, body)
@@ -61,7 +63,7 @@ const UpdateNoteForm = ({ noteId }) => {
         title={
           <div style={{ fontWeight: "bold" }}>
             <IconPencil style={{ marginRight: "6px" }} />
-            <span style={{ fontSize: "21px" }}>Edit Note</span>
+            <span style={{ fontSize: "21px" }}>Edit Note {noteId}</span>
           </div>
         }
         centered
@@ -75,11 +77,14 @@ const UpdateNoteForm = ({ noteId }) => {
             inputSize="lg"
             size="lg"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            // onChange={(e) => setTitle(e.target.value)}
           />
           <hr style={{marginBottom:'9px'}}/>
          </div>
-          {/* <ReactQuill theme="snow" value={body} onChange={setBody} /> */}
+          <ReactQuill theme="snow" value={body} 
+          // onChange={setBody} 
+          
+          />
           {/* <Input
              variant="unstyled"
              placeholder="Enter Title Here"
@@ -104,7 +109,9 @@ const UpdateNoteForm = ({ noteId }) => {
 };
 
 UpdateNoteForm.propTypes = {
-    noteId: PropTypes.string
+    noteId: PropTypes.string,
+    title:PropTypes.string,
+    body:PropTypes.string,
   }
 
 export default UpdateNoteForm;
