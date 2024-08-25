@@ -61,16 +61,6 @@ function App() {
       setLocale(localStorage.locale);
     }
 
-    /**
-     * Inisialisasi Theme
-     */
-
-    // if (localStorage.theme) {
-    //   changeTheme(localStorage.theme)
-    // } else {
-    //   localStorage.setItem('theme', 'dark')
-    //   changeTheme('dark')
-    // }
   }, []);
 
   return (

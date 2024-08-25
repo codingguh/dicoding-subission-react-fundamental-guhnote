@@ -1,13 +1,11 @@
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button, Input,  } from "@mantine/core";
 import { IconPencilCode } from "@tabler/icons-react";
-import { useNotes } from "../../../context/NotesProvider";
 import { useState } from "react";
 import "../../ui/editor/style.css";
 import classes from '../../ui/editor/Demo.module.css';
 import { notifications } from "@mantine/notifications";
 import "react-quill/dist/quill.snow.css";
-import ReactQuill from "react-quill";
 import { useNavigate } from "react-router-dom";
 import { addNote } from '../../../utils/network-data'
 export function AddNewNoteForm() {

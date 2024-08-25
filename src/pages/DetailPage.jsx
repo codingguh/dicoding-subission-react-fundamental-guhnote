@@ -29,7 +29,7 @@ function DetailPageWrapper() {
   }, [id]);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <div>Loading...</div>;
   }
 
   return <DetailPage note={note} />;
@@ -48,7 +48,7 @@ class DetailPage extends React.Component {
     const { note } = this.state;
 
     if (!note) {
-      return <p>Note is not found!</p>;
+      return <div>Note is not found!</div>;
     }
 
     return (

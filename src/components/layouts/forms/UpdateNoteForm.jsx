@@ -4,18 +4,15 @@ import { IconPencil, IconPencilMinus } from "@tabler/icons-react";
 import PropTypes from 'prop-types'
 import { useNotes } from "../../../context/NotesProvider";
 import ReactQuill from "react-quill";
-import { useEffect, useState } from "react";
 import { notifications } from "@mantine/notifications";
 import classes from '../../ui/editor/Demo.module.css';
 import "react-quill/dist/quill.snow.css";
-import { getNote } from "../../../utils/network-data";
+
 
 
 const UpdateNoteForm = ({ noteId,title,body }) => {
-  const [note, setNote] = useState(null);
-  const [loading, setLoading] = useState(true);
     const [opened, { open, close }] = useDisclosure(false);
-  const { editNote,getNoteById } = useNotes();
+  const { editNote, } = useNotes();
 
   // const initialNote = getNoteById(noteId)
 
