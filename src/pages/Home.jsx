@@ -67,11 +67,13 @@ const Home = () => {
     }
     
   }, [search])
+  const text = useLanguage('app')
   return (
     <div style={{ marginLeft: "5%", marginRight: "5%" }}>
        
        <Group style={{padding:'20px 00px 20px 0px'}} justify="space-between" >
-      <div><h2>Aktif ()</h2></div>
+      <div><h2>{text.active} ({notes.length
+        })</h2></div>
       <Group>
       <IconSearch stroke={2} />
       <TextInput

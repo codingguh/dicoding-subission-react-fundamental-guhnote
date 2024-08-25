@@ -2,6 +2,7 @@ import  { useContext } from 'react'
 import { Menu, rem } from "@mantine/core";
 import { IconLogout } from "@tabler/icons-react";
 import AuthContext from '../../../context/AuthContext'
+import useLanguage from '../../../hooks/useLanguage';
 // import useLanguage from "../../../hooks/useLanguage";
 
 const ButtonLogout = () => {
@@ -15,6 +16,8 @@ const ButtonLogout = () => {
     // }
   };
 
+  const text = useLanguage('app')
+
   return (
    <>
    {
@@ -25,7 +28,7 @@ const ButtonLogout = () => {
       <IconLogout style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
     }
   >
-    <b>Logout</b>
+    <b>{text.logout}</b>
   </Menu.Item>):''  
 }
    </>

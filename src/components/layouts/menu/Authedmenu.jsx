@@ -9,6 +9,7 @@ import AuthContext from "../../../context/AuthContext";
 import { ActionToggle } from '../../ui/buttons/ActionToggle';
 import { useLocation, useNavigate } from 'react-router-dom';
 import LanguageToggle from '../../ui/buttons/LanguageToggle';
+import useLanguage from '../../../hooks/useLanguage';
 
 const Authedmenu = ({ userMenuOpened }) => {
     const { auth } = useContext(AuthContext);
@@ -34,7 +35,7 @@ const Authedmenu = ({ userMenuOpened }) => {
             navigate("/");
         }
     };
-
+    const text = useLanguage('app')
     return (
         <div className={classes.menuWrapper}>
             <Menu.Target>
@@ -61,7 +62,7 @@ const Authedmenu = ({ userMenuOpened }) => {
                 </UnstyledButton>
             </Menu.Target>
             <Menu.Dropdown>
-                <Menu.Label>Settings</Menu.Label>
+                <Menu.Label>{text.setting}</Menu.Label>
                 <Menu.Item
                     onClick={handleArchiveClick}
                     leftSection={
@@ -71,7 +72,9 @@ const Authedmenu = ({ userMenuOpened }) => {
                         />
                     }
                 >
-                    {pathname !== '/archives' ? 'Archive List' : 'Active List'}
+                <div onClick={handleArchiveClick}>
+                {pathname !== '/archives' ? 'Archive List' : 'Active List'}
+                </div>
                 </Menu.Item>
                 <Menu.Item
                     onClick={() => setColorScheme(computedColorScheme === 'light' ? 'dark' : 'light')}
@@ -82,11 +85,10 @@ const Authedmenu = ({ userMenuOpened }) => {
                         />
                     }
                 >
-                    Tema
+                    {text.theme}
                 </Menu.Item>
                 <LanguageToggle />
                 <Menu.Divider />
-                <Menu.Label>Danger zone</Menu.Label>
                 <ButtonLogout />
             </Menu.Dropdown>
         </div>
