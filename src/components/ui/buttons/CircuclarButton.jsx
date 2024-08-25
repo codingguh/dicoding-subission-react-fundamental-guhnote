@@ -9,21 +9,25 @@ import { notifications } from "@mantine/notifications";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import { useNavigate } from "react-router-dom";
+import { addNote } from "../../../utils/network-data";
+import PropTypes from "prop-types";
 
-export function CircularButtonNoteForm() {
+export function CircularButtonNoteForm({onNoteAdd}) {
   const [opened, { open, close }] = useDisclosure(false);
-  const { addNote } = useNotes();
+  // const { addNote } = useNotes();
   // const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const navigate = useNavigate();
 
-  const addAndResetNote = () => {
+  const addAndResetNote =async () => {
     // const body = editorRef.current?.root.innerHTML; // Get the HTML content of the editor
-    addNote(title, body);
+    const newNote = await addNote({ title, body });
     setTitle("");
     setBody("")
     close()
+    console.log('new note',newNote)
+    onNoteAdd(newNote.data)
     return       notifications.show({
 
       title: 'Success',
@@ -125,4 +129,8 @@ export function CircularButtonNoteForm() {
      
     </>
   );
+}
+
+CircularButtonNoteForm.propTypes = {
+  onNote: PropTypes.func.isRequired, 
 }

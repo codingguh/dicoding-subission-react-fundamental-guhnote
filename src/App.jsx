@@ -7,6 +7,7 @@ import AuthContext from "./context/AuthContext";
 import { useEffect, useMemo, useState } from "react";
 import { getUserLogged } from "./utils/network-data";
 import LocaleContext from "./context/LocaleContext";
+import Loading from "./components/ui/loading/Loading";
 
 function App() {
   const [auth, setAuth] = useState(null);
@@ -80,7 +81,7 @@ function App() {
         <main>
           {loading ? (
             // <LoadingIndicator />
-            <div>ssdfsd</div>
+            <Loading/>
           ) : (
             <Routes />
           )}

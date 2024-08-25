@@ -1,19 +1,19 @@
 import { Card, Text, Group, ActionIcon, Button } from "@mantine/core";
 import { IconCalendar, IconArchive, IconTrash } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { modals } from "@mantine/modals";
-import { useNotes } from "../../../context/NotesProvider";
 import { notifications } from "@mantine/notifications";
 import { showDate } from "../../../utils/timeFormat";
 import styles from "./card.module.css";
 import parse from "html-react-parser";
 import UpdateNoteForm from "../../layouts/forms/UpdateNoteForm";
 import useLanguage from "../../../hooks/useLanguage";
-
-export function TaskCard({ id, title, body, createdAt, archived }) {
-  const text = useLanguage('app')
-  const { deleteNote, archiveNote } = useNotes();
+import { deleteNote,archiveNote} from "../../../utils/network-data";
+export function TaskCard({ id, title, body, createdAt, archived,onNoteChange }) {
+  const text = useLanguage('app');
+  const navigate = useNavigate()
+  
   const openModal = () =>
     modals.openConfirmModal({
       title: `${text.titleDeleteNote}`,
@@ -27,11 +27,13 @@ export function TaskCard({ id, title, body, createdAt, archived }) {
       onCancel: () => console.log("Cancel"),
       onConfirm: () => {
         deleteNote(id);
+      
         notifications.show({
           title: "Success Delete data",
           message: "this data has been removed",
           position: "top-left",
         });
+        onNoteChange(id); 
       },
       // onDelete={() => deleteNote(id)}
     });
@@ -42,9 +44,8 @@ export function TaskCard({ id, title, body, createdAt, archived }) {
       title: "Success Archiving",
       message: "You are successfull arching this data",
       position: "top-left",
-      // posi
-      // classNames: classes,
     });
+    onNoteChange(id); 
   };
   return (
     <Card withBorder padding="lg" radius="md" style={{ marginBottom: "9px" }}>
@@ -104,4 +105,5 @@ TaskCard.propTypes = {
   body: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
   archived: PropTypes.bool.isRequired,
+  onNoteChange: PropTypes.func.isRequired, 
 };

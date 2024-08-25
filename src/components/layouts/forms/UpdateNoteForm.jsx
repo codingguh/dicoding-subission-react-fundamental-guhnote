@@ -79,7 +79,7 @@ const UpdateNoteForm = ({ noteId }) => {
           />
           <hr style={{marginBottom:'9px'}}/>
          </div>
-          <ReactQuill theme="snow" value={body} onChange={setBody} />
+          {/* <ReactQuill theme="snow" value={body} onChange={setBody} /> */}
           {/* <Input
              variant="unstyled"
              placeholder="Enter Title Here"

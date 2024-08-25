@@ -9,9 +9,10 @@ import { notifications } from "@mantine/notifications";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import { useNavigate } from "react-router-dom";
+import { addNote } from '../../../utils/network-data'
 export function AddNewNoteForm() {
   const [opened, { open, close }] = useDisclosure(false);
-  const { addNote } = useNotes();
+  // const { addNote } = useNotes();
   // const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -19,7 +20,7 @@ export function AddNewNoteForm() {
 
   const addAndResetNote = () => {
     // const body = editorRef.current?.root.innerHTML; // Get the HTML content of the editor
-    addNote(title, body);
+    addNote({title,body});
     setTitle("");
     setBody("")
     close()
@@ -80,7 +81,15 @@ export function AddNewNoteForm() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <ReactQuill theme="snow" value={body} onChange={setBody} />
+           <Input
+            variant="unstyled"
+            placeholder="Enter Title Here"
+            inputSize="lg"
+            size="lg"
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+          />
+          {/* <ReactQuill theme="snow" value={body} onChange={setBody} /> */}
           {/* <Input
              variant="unstyled"
              placeholder="Enter Title Here"
