@@ -63,7 +63,7 @@ const UpdateNoteForm = ({ noteId,title,body }) => {
         title={
           <div style={{ fontWeight: "bold" }}>
             <IconPencil style={{ marginRight: "6px" }} />
-            <span style={{ fontSize: "21px" }}>Edit Note {noteId}</span>
+            <span style={{ fontSize: "21px" }}>Edit Note</span>
           </div>
         }
         centered
